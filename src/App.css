@@ -13,10 +13,12 @@
   max-width: 752px;
 }
 
-.upcoming-events__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 32px;
+@media (min-width: 768px) {
+  .upcoming-events__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 32px;
+  }
 }
 
 .upcoming-events__heading {
@@ -55,10 +57,12 @@
   max-width: 100%;
 }
 
-.footer__content {
-  margin-left: 32px;
-  display: flex;
-  align-items: center;
+@media (min-width: 768px) {
+  .footer__content {
+    margin-left: 32px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .footer__button {
