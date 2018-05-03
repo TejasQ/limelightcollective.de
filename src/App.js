@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div>
         <section className="logo-container">
-          <img alt="The Limelight Collective" src="/logo.jpg" />
+          <img alt="The Limelight Collective" src="logo.jpg" />
         </section>
         <section className="upcoming-events">
           <h2 className="upcoming-events__heading">Kommende Veranstaltungen</h2>
@@ -22,7 +22,7 @@ class App extends Component {
               <img
                 className="event__image"
                 alt="A Third of the Stars"
-                src="/third.png"
+                src="third.png"
               />
 
               <a
@@ -49,7 +49,7 @@ class App extends Component {
               <img
                 className="event__image"
                 alt="In Der Strafkolonie"
-                src="/straf.png"
+                src="straf.png"
               />
 
               <a
@@ -80,7 +80,7 @@ class App extends Component {
         </section>
         <section className="footer">
           <div className="footer__logo-container">
-            <img className="footer__logo" alt="Heilsarmee" src="/salvos.jpg" />
+            <img className="footer__logo" alt="Heilsarmee" src="salvos.jpg" />
           </div>
           <div className="footer__content">
             <p>Ein Projekt der Heilsarmee</p>
