@@ -1,28 +1,66 @@
-.App {
-  text-align: center;
+.logo-container {
+  max-width: 70px;
+  margin: 20px auto;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.logo-container img {
+  max-width: 100%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.upcoming-events {
+  padding: 48px 16px;
+  margin: 0 auto;
+  max-width: 752px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.upcoming-events__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 32px;
 }
 
-.App-intro {
-  font-size: large;
+.upcoming-events__heading {
+  margin-bottom: 32px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.event__image {
+  max-width: 100%;
+  margin: 16px 0;
+}
+
+.event__heading {
+  color: var(--gold);
+}
+
+.flyer {
+  width: 100vw;
+  max-width: 1024px;
+  margin: 0 auto;
+  box-shadow: 10px 20px 150px #bbb;
+}
+
+.footer {
+  max-width: 752px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 100px auto 64px;
+}
+
+.footer__logo-container {
+  width: 50px;
+}
+
+.footer__logo {
+  max-width: 100%;
+}
+
+.footer__content {
+  margin-left: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.footer__button {
+  margin-left: 16px;
 }
