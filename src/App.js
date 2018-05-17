@@ -79,7 +79,13 @@ class App extends Component {
         </section>
         <section className="footer">
           <div className="footer__logo-container">
-            <img className="footer__logo" alt="Heilsarmee" src="salvos.png" />
+            <a
+              target="_blank"
+              rel="noopener noreferrer nofollow noindex"
+              href="http://www.heilsarmee.de/"
+            >
+              <img className="footer__logo" alt="Heilsarmee" src="salvos.png" />
+            </a>
           </div>
           <div className="footer__content">
             <p>Ein Projekt der Heilsarmee</p>
