@@ -65,3 +65,12 @@ button:hover,
 .button_primary:hover {
   background: var(--color-primary_accent);
 }
+
+.button_transparent {
+  background: transparent;
+  color: #8e7647;
+}
+
+.button_transparent:hover {
+  background: #eee;
+}

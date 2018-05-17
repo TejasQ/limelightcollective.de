@@ -14,7 +14,7 @@ class App extends Component {
           <img alt="The Limelight Collective" src="logo.jpg" />
         </section>
         <section className="upcoming-events">
-          <h2 className="upcoming-events__heading">Kommende Veranstaltungen</h2>
+          <h2 className="upcoming-events__heading">Upcoming Events</h2>
           <div className="upcoming-events__grid">
             <div className="event">
               <h3 className="event__heading">A Third of the Stars</h3>
@@ -22,7 +22,7 @@ class App extends Component {
               <img
                 className="event__image"
                 alt="A Third of the Stars"
-                src="third.png"
+                src="third.jpg"
               />
 
               <a
@@ -31,16 +31,15 @@ class App extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Tickets Kaufen
+                Buy Tickets
               </a>
               <p>
-                Das Tanzstück „A Third of the Stars“ setzt sich mit universalen
-                Gut-gegen-Böse-Handlungen auf der geistlichen und
-                gesellschaftlichen Ebene und auf der Verhaltensebene
-                auseinander. Mystisch erzählt, erinnert es an eine epische
-                Legende und lädt die Zuschauer*innen ein, Platz in einer
-                Geschichte zu finden, die größer ist, als sie selbst. Im Zentrum
-                der Arbeit von The Limelight Collective steht die Spiritualität.
+                A Third of the Stars is a contemporary dance work that tells an
+                epic story of a dragon, a woman, an angel and the clash between
+                good and evil. Featuring live dance, song, poetry, and original
+                music we invite you to experience this immersive story and find
+                your place in this larger-than-life tale. Each performance
+                includes a discussion panel with the artists after the show.
               </p>
             </div>
             <div className="event">
@@ -49,7 +48,7 @@ class App extends Component {
               <img
                 className="event__image"
                 alt="In Der Strafkolonie"
-                src="straf.png"
+                src="straf.jpg"
               />
 
               <a
@@ -58,16 +57,16 @@ class App extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Tickets Kaufen
+                Buy Tickets
               </a>
               <p>
-                Eine Forschungsreisende findet sich in einer Strafkolonie wieder
-                und wird gebeten der Exekution eines Soldaten beizuwohnen, der
-                wegen Ungehorsam und Beleidigung verurteilt wurde. Eine fein
-                ausgetüftelte Maschine führt zur Frage über Recht und Unrecht.
-                Was nennen wir Zivilisation? Welche Verantwortung ergreifen wir?
-                Heuwinkel und Steffen arbeiten freischaffend als Regisseur bzw.
-                Schauspielerin.
+                An explorer finds herself in a penal colony and is asked to
+                attend the execution of a soldier convicted of disobedience and
+                insulting his superior. A finely tuned machine leads to
+                questions about right and wrong and the thin layer of what we
+                call civilization. What responsibility do we take? And how do we
+                represent the values with which we establish and define
+                ourselves as human beings?
               </p>
             </div>
           </div>
@@ -80,7 +79,7 @@ class App extends Component {
         </section>
         <section className="footer">
           <div className="footer__logo-container">
-            <img className="footer__logo" alt="Heilsarmee" src="salvos.jpg" />
+            <img className="footer__logo" alt="Heilsarmee" src="salvos.png" />
           </div>
           <div className="footer__content">
             <p>Ein Projekt der Heilsarmee</p>
@@ -91,6 +90,14 @@ class App extends Component {
               href="https://www.facebook.com/thelimelightcollective/app/180105282031811/"
             >
               Spenden/Donate
+            </a>
+            <a
+              className="footer__button button button_transparent"
+              target="_blank"
+              rel="noopener noreferrer nofollow noindex"
+              href="https://www.heilsarmee.de/impressum"
+            >
+              Impressum
             </a>
           </div>
         </section>
