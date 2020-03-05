@@ -19,8 +19,22 @@ const Container = styled(Ball)`
   cursor: pointer;
   animation: ${createFloatAnimation()} ${getRandomNumber(10, 20)}s linear alternate infinite;
 
-  :hover {
+  ::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease;
     background-image: url("/images/arts-hover.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 200%;
+  }
+  :hover::after {
+    opacity: 1;
   }
 `;
 
