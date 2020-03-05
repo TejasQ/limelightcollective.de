@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
+
 import Ball from "./Ball";
 import { createFloatAnimation } from "../util/createFloatAnimation";
 import { getRandomNumber } from "../util/getRandomNumber";
@@ -22,6 +24,10 @@ const Container = styled(Ball)`
   }
 `;
 
-const ArtsButton = () => <Container>Arts</Container>;
+const ArtsButton = () => (
+  <Link href="/arts">
+    <Container>Arts</Container>
+  </Link>
+);
 
 export default ArtsButton;

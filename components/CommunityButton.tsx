@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import Ball from "./Ball";
+import Link from "next/link";
 
+import Ball from "./Ball";
 import { createFloatAnimation } from "../util/createFloatAnimation";
 import { getRandomNumber } from "../util/getRandomNumber";
 
@@ -22,6 +23,10 @@ const Container = styled(Ball)`
   }
 `;
 
-const CommunityButton = () => <Container>Community</Container>;
+const CommunityButton = () => (
+  <Link href="/community">
+    <Container>Community</Container>
+  </Link>
+);
 
 export default CommunityButton;

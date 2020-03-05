@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 import Ball from "./Ball";
 import { createFloatAnimation } from "../util/createFloatAnimation";
@@ -23,6 +24,10 @@ const Container = styled(Ball)`
   }
 `;
 
-const SpaceButton = () => <Container>Space</Container>;
+const SpaceButton = () => (
+  <Link href="/space">
+    <Container>Space</Container>
+  </Link>
+);
 
 export default SpaceButton;

@@ -44,15 +44,9 @@ const HomeSection: FC<HomeSectionProps> = ({ events }) => {
       <Container>
         <Stage>
           <div>
-            <Link href="/community">
-              <CommunityButton />
-            </Link>
-            <Link href="/space">
-              <SpaceButton />
-            </Link>
-            <Link href="/arts">
-              <ArtsButton />
-            </Link>
+            <CommunityButton />
+            <SpaceButton />
+            <ArtsButton />
             <Logo />
           </div>
           <div style={{ textAlign: "center" }}>
