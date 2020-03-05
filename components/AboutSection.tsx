@@ -8,12 +8,7 @@ import SidebarItem from "./SidebarItem";
 import SidebarItemContainer from "./SidebarItemContainer";
 import styled from "@emotion/styled";
 
-const ThisPage = styled(Page)`
-  background-image: url("/images/bg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 0 -1800px;
-`;
+const ThisPage = styled(Page)``;
 
 const TeamLayout = styled.div`
   display: grid;

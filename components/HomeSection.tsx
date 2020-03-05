@@ -17,9 +17,6 @@ const Container = styled.div`
   height: 100%;
   position: relative;
   color: white;
-  background-image: url("/images/bg-home-1.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
 `;
 
 const Stage = styled.div`
@@ -48,13 +45,13 @@ const HomeSection: FC<HomeSectionProps> = ({ events }) => {
         <Stage>
           <div>
             <Link href="/community">
-              <CommunityButton>Community</CommunityButton>
+              <CommunityButton />
             </Link>
             <Link href="/space">
-              <SpaceButton>Space</SpaceButton>
+              <SpaceButton />
             </Link>
             <Link href="/arts">
-              <ArtsButton>Arts</ArtsButton>
+              <ArtsButton />
             </Link>
             <Logo />
           </div>

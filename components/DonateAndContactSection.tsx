@@ -9,11 +9,7 @@ import SidebarItemContainer from "./SidebarItemContainer";
 import Footer from "./Footer";
 import styled from "@emotion/styled";
 
-const ThisPage = styled(Page)`
-  background-image: url("/images/bg-home-3.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-`;
+const ThisPage = styled(Page)``;
 
 const DonateAndContactSection: FC<{ currentPage?: "donate" | "contact" }> = ({ currentPage = "donate" }) => (
   <ThisPage>

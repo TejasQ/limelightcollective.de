@@ -1,16 +1,28 @@
 import React from "react";
 import nodeFetch from "node-fetch";
+import styled from "@emotion/styled";
 
 import HomeSection from "../components/HomeSection";
 import AboutSection from "../components/AboutSection";
 import DonateAndContactSection from "../components/DonateAndContactSection";
 
+const PageContainer = styled.div`
+  background-image: url("/images/home-bg.jpg");
+  background-size: cover;
+  background-position: 0 -1000px;
+  background-color: black;
+  background-repeat: no-repeat;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+`;
+
 const Home = ({ events }) => (
-  <>
+  <PageContainer>
     <HomeSection events={events} />
     <AboutSection />
     <DonateAndContactSection />
-  </>
+  </PageContainer>
 );
 
 const accessToken = "";

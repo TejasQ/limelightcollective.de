@@ -12,7 +12,11 @@ class MyDocument extends Document {
       <>
         <Global styles={globalStyles} />
         <Html lang="en">
-          <Head></Head>
+          <Head>
+            <link rel="preload" as="image" href="/images/arts-hover.png"></link>
+            <link rel="preload" as="image" href="/images/space-hover.png"></link>
+            <link rel="preload" as="image" href="/images/community-hover.png"></link>
+          </Head>
           <body>
             <Content>
               <Main />

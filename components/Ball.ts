@@ -15,6 +15,8 @@ const Ball = styled.div<{ size?: string }>`
   border: 2px solid white;
   color: white;
   border-radius: 50%;
+  z-index: 100;
+  backdrop-filter: blur(10px);
 `;
 
 export default Ball;
