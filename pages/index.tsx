@@ -25,7 +25,7 @@ const Home = ({ events }) => (
   </PageContainer>
 );
 
-const accessToken = "";
+const accessToken = process.env.FB_TOKEN;
 
 Home.getInitialProps = async () => {
   const events = await nodeFetch(
