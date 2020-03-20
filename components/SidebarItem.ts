@@ -1,20 +1,21 @@
 import styled from "@emotion/styled";
 
-const SidebarItem = styled.li`
-  position: relative;
-  font-style: italic;
-  font-family: heading;
-  text-transform: uppercase;
-  letter-spacing: 6px;
-  z-index: 100;
-  padding: 4px 8px;
-  cursor: pointer;
-  background: #0006;
+const SidebarItem = styled.li<{ active: boolean }>(({ active }) => ({
+  position: "relative",
+  fontStyle: "italic",
+  fontFamily: "heading",
+  textTransform: "uppercase",
+  letterSpacing: 6,
+  zIndex: 100,
+  padding: "4px 8px",
+  cursor: "pointer",
+  background: active ? "white" : "#0006",
+  color: active ? "#000" : "currentColor",
 
-  :hover {
-    background: white;
-    color: black;
-  }
-`;
+  ":hover": {
+    background: "white",
+    color: "black",
+  },
+}));
 
 export default SidebarItem;

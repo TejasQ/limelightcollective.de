@@ -87,4 +87,29 @@ export default css`
     line-height: 32px;
     font-size: 17px;
   }
+
+  div > p:first-of-type {
+    margin-top: 0;
+  }
+
+  a:link,
+  a:visited,
+  a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #333;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: #0005;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #fff3;
+    border-radius: 4px;
+  }
 `;

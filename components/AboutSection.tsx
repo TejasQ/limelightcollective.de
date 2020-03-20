@@ -1,4 +1,5 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 import TwoColumnPageLayout from "./TwoColumnPageLayout";
 import Page from "./Page";
@@ -7,86 +8,76 @@ import PageContent from "./PageContent";
 import SidebarItem from "./SidebarItem";
 import SidebarItemContainer from "./SidebarItemContainer";
 import styled from "@emotion/styled";
+import { useAirTable } from "../hooks/useAirTable";
+import { FooterResult, TeamResult } from "../types/airtable";
 
 const ThisPage = styled(Page)``;
 
 const TeamLayout = styled.div`
   display: grid;
-  grid-template-columns: 50px auto;
+  grid-template-columns: 150px auto;
   gap: 16px;
+  height: 100%;
+  overflow: auto;
 `;
+
+const ProfilePic = styled.div<{ src: string }>(({ src }) => ({
+  width: 150,
+  height: 150,
+  backgroundImage: `url('${src}')`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  borderRadius: "50%",
+}));
 
 const AboutSection: FC = () => {
   const [currentPage, setCurrentPage] = useState<"concept" | "team">("concept");
+  const { data, getAll } = useAirTable({ tableName: "Footer" });
+  const { data: teamData, getAll: getTeamMembers } = useAirTable({ tableName: "Team" });
+
+  useEffect(() => {
+    getAll(["Notes", "Name", "Team"]);
+    getTeamMembers(["ID", "Name", "Notes", "Attachments"]);
+  }, []);
+
+  const notes = data && data.find((d: FooterResult) => d.fields.Name === "About").fields.Notes;
+
   return (
     <ThisPage>
       <TwoColumnPageLayout>
         <div>
           <Title>About</Title>
           <SidebarItemContainer>
-            <SidebarItem onClick={() => setCurrentPage("concept")}>Our Concept</SidebarItem>
-            <SidebarItem onClick={() => setCurrentPage("team")}>Our Team</SidebarItem>
+            <SidebarItem active={currentPage === "concept"} onClick={() => setCurrentPage("concept")}>
+              Our Concept
+            </SidebarItem>
+            <SidebarItem active={currentPage === "team"} onClick={() => setCurrentPage("team")}>
+              Our Team
+            </SidebarItem>
           </SidebarItemContainer>
         </div>
-        <div>
+        <div style={{ height: "100%", overflow: "auto" }}>
           <PageContent>
             {currentPage === "concept" && (
               <>
                 {" "}
                 <Title condensed>Our Concept</Title>
-                <p>
-                  The Limelight Collective brings high quality performing arts together with Christian spirituality as a
-                  way of enriching individual lives and the wider community.
-                </p>
-                <p>
-                  We offer community performing arts programmes like our biweekly Open Stage, our Baby-song courses and
-                  street performance in our neighborhood.
-                </p>
-                <p>
-                  Soul Space, our weekly artistic meditation, provides opportunity for spiritual life developent through
-                  artistic practices.
-                </p>
-                <p>
-                  We also offer pastoral care and profeessional development opportuntiies for peforming artists. The
-                  Limelight Collective is a project of The Salavation Army.
-                </p>
+                <ReactMarkdown>{notes}</ReactMarkdown>
               </>
             )}
             {currentPage === "team" && (
               <>
-                {" "}
                 <Title condensed>Our Team</Title>
-                <TeamLayout>
-                  <img alt="Shaw" src="https://lorempixel.com/50/50" />
-                  <div>
-                    <p>SHAW COLEMAN - ARTISTIC DIRECTOR</p>
-                    <p>
-                      Shaw Coleman graduated from the Australian National Theatre Ballet School in 2006, before dancing
-                      soloist roles in various ballet copanies throughout Europe.
-                    </p>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi accusantium quidem at architecto
-                      harum aliquid laborum sapiente distinctio eligendi, ipsum, quos fugiat repellat, nobis nam quam
-                      minima. Dolores, molestiae rem.
-                    </p>
-                  </div>
-                </TeamLayout>
-                <TeamLayout>
-                  <img alt="Shaw" src="https://lorempixel.com/50/50" />
-                  <div>
-                    <p>KATHARINA COLEMAN - PROJECT CONSULTANT</p>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusamus impedit sint, doloribus vel
-                      dolore iste soluta, dolorem, amet fugit quod perferendis! Recusandae cupiditate ea vero dolorum,
-                      iusto numquam neque.
-                    </p>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit praesentium nesciunt, quo
-                      debitis veniam inventore quod error necessitatibus, labore aspernatur autem id quis eaque alias
-                      fuga explicabo quam beatae.
-                    </p>
-                  </div>
-                </TeamLayout>
+                {teamData &&
+                  teamData.map((t: TeamResult) => (
+                    <TeamLayout key={String(t.fields.ID)}>
+                      {t.fields.Attachments ? <ProfilePic src={t.fields.Attachments[0].url} /> : <div />}
+                      <div>
+                        <p>{t.fields.Name}</p>
+                        <ReactMarkdown>{t.fields.Notes}</ReactMarkdown>
+                      </div>
+                    </TeamLayout>
+                  ))}
               </>
             )}
           </PageContent>
