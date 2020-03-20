@@ -15,7 +15,7 @@ const DonateAndContactSection: FC<{ currentPage?: "donate" | "contact" }> = ({ c
   <ThisPage>
     <TwoColumnPageLayout>
       <div>
-        <Title>Donate &amp; Contact</Title>
+        <Title condensed>Donate &amp; Contact</Title>
         <SidebarItemContainer>
           <SidebarItem>Donate</SidebarItem>
           <SidebarItem onClick={() => (window.location.href = "mailto:info@limelight.de")}>Contact</SidebarItem>

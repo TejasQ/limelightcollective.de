@@ -2,7 +2,7 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import { Global } from "@emotion/core";
 import styled from "@emotion/styled";
 
-import globalStyles from "../components/globalStyles";
+import globalStyles from "../util/globalStyles";
 
 const Content = styled.main``;
 

@@ -49,10 +49,7 @@ const HomeSection: FC<HomeSectionProps> = ({ events }) => {
             <ArtsButton />
             <Logo />
           </div>
-          <div style={{ textAlign: "center" }}>
-            <HeroName>The Limelight Collective</HeroName>
-            <HeroName small>Ein Projekt Der Heilsarmee</HeroName>
-          </div>
+          <div />
           <footer>
             <Carousel>
               {events &&

@@ -10,6 +10,8 @@ const Container = styled.img`
   pointer-events: none;
 `;
 
-const Logo: FC = () => <Container src="/images/hero-notext.png"></Container>;
+const Logo: FC = () => (
+  <Container alt="The Limelight Collective - Ein Projekt Der Heilsarmee" src="/images/hero2.png"></Container>
+);
 
 export default Logo;

@@ -2,7 +2,10 @@ import styled from "@emotion/styled";
 
 const Title = styled.h1<{ condensed?: boolean }>`
   position: relative;
-  font-size: 40px;
+  font-family: heading;
+  font-style: italic;
+  font-size: 48px;
+  font-weight: 300;
   letter-spacing: ${({ condensed }) => (condensed ? "initial" : 16)}px;
   text-transform: uppercase;
   z-index: 100;
