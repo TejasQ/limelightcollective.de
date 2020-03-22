@@ -25,7 +25,9 @@ const ArtsPage = () => {
           <Title>Arts</Title>
           <SidebarItemContainer>
             {pages.map((p, i) => (
-              <SidebarItem onClick={() => setCurrentPage(i)}>{p}</SidebarItem>
+              <SidebarItem active={currentPage === i} onClick={() => setCurrentPage(i)}>
+                {p}
+              </SidebarItem>
             ))}
           </SidebarItemContainer>
         </div>
