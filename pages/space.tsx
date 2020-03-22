@@ -19,8 +19,8 @@ const SpacePage = () => (
       <div>
         <Title>Space</Title>
         <SidebarItemContainer>
-          <SidebarItem>Space Concept</SidebarItem>
-          <SidebarItem>Use Our Space</SidebarItem>
+          <SidebarItem active>Space Concept</SidebarItem>
+          <SidebarItem active={false}>Use Our Space</SidebarItem>
         </SidebarItemContainer>
       </div>
       <div style={{ position: "relative" }}>
