@@ -73,7 +73,7 @@ const AboutSection: FC = () => {
                     <TeamLayout key={String(t.fields.ID)}>
                       {t.fields.Attachments ? <ProfilePic src={t.fields.Attachments[0].url} /> : <div />}
                       <div>
-                        <p>{t.fields.Name}</p>
+                        <ReactMarkdown>{t.fields.Name}</ReactMarkdown>
                         <ReactMarkdown>{t.fields.Notes}</ReactMarkdown>
                       </div>
                     </TeamLayout>
