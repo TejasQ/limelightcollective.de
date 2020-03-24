@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 const Container = styled.footer`
   position: absolute;
@@ -22,7 +23,13 @@ const Container = styled.footer`
 const Footer: FC = () => (
   <Container>
     <div>
-      <div>&copy; THE LIMELIGHT COLLECTIVE | DESIGN: MFW.DESIGN.COM | IMPRESSUM | DATENSCHUTZ</div>
+      <div>
+        &copy; THE LIMELIGHT COLLECTIVE | DESIGN:{" "}
+        <a href="https://mfw.design.com" target="blank" rel="nofollow noreferrer noopener">
+          MFW.DESIGN.COM
+        </a>{" "}
+        | <Link href="/impressum-datenschutz">IMPRESSUM</Link> | <Link href="/impressum-datenschutz">DATENSCHUTZ</Link>
+      </div>
     </div>
   </Container>
 );
