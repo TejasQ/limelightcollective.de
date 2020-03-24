@@ -61,7 +61,9 @@ const HomeSection: FC<HomeSectionProps> = ({ events }) => {
                       date: new Date(e.start_time),
                     }}
                     imageUrl={e.cover.source}
-                  ></CarouselItem>
+                  >
+                    {e.description}
+                  </CarouselItem>
                 ))}
             </Carousel>
           </footer>

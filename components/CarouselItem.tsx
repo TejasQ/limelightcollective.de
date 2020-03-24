@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import { FC } from "react";
 
@@ -9,10 +9,12 @@ interface CarouselItemProps {
 
 const Container = styled.div`
   position: relative;
-  border: 1px solid white;
   display: grid;
-  grid-template-rows: auto max-content;
-  background: white;
+  grid-template-rows: 0px 250px max-content;
+  align-self: flex-end;
+  background: #f0d2c3;
+  font-size: 18px;
+  font-weight: 600;
   color: black;
   cursor: pointer;
   transition: box-shadow 0.6s ease, transform 0.6s ease;
@@ -24,6 +26,13 @@ const Container = styled.div`
     z-index: 101;
     transform: scale(1.05);
     box-shadow: 0 -5px 40px 10px #000a;
+    grid-template-rows: min-content 250px max-content;
+  }
+
+  :hover > .description {
+    max-height: 50vh;
+    overflow: auto;
+    color: currentColor;
   }
 `;
 
@@ -33,14 +42,33 @@ const Photo = styled.div<{ imageUrl: string }>`
   background: ${({ imageUrl }) => `url("${imageUrl}")`};
   background-position: center;
   background-size: cover;
+  height: 250px;
 `;
 
-const CarouselItem: FC<CarouselItemProps> = ({ event, imageUrl }) => {
+const Description = styled.div`
+  padding: 32px 16px;
+  line-height: 24px;
+  max-height: 0;
+  overflow: none;
+  transition: max-height 0.6s ease;
+  color: transparent;
+`;
+
+const CarouselItem: FC<CarouselItemProps> = ({ event, imageUrl, children }) => {
+  const date = useMemo(() => {
+    try {
+      return Intl.DateTimeFormat("en-US", { dateStyle: "medium" } as any).format(event.date);
+    } catch (e) {
+      return ``;
+    }
+  }, []);
+
   return (
     <Container onClick={() => window.open(`https://facebook.com/event/${event.id}`)}>
+      <Description className="description">{children}</Description>
       <Photo imageUrl={imageUrl} />
-      <div style={{ padding: 8 }}>
-        {event.name} | {Intl.DateTimeFormat("en-US", { dateStyle: "full" } as any).format(event.date)}
+      <div style={{ padding: 8, textAlign: "center" }}>
+        <strong>{event.name.toUpperCase()}</strong> | {date}
       </div>
     </Container>
   );
