@@ -23,6 +23,7 @@ const LocalTitle = styled.h1`
 `;
 
 const LocalBall = styled.div`
+  display: flex;
   place-content: center;
   place-items: center;
   margin: 0 auto;
