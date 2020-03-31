@@ -9,6 +9,7 @@ const Title = styled.h1<{ condensed?: boolean }>`
   letter-spacing: ${({ condensed }) => (condensed ? "initial" : 16)}px;
   text-transform: uppercase;
   z-index: 100;
+  word-wrap: break-word;
 `;
 
 export default Title;

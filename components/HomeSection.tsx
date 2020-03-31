@@ -7,7 +7,6 @@ import Logo from "./Logo";
 import CommunityButton from "./CommunityButton";
 import SpaceButton from "./SpaceButton";
 import ArtsButton from "./ArtsButton";
-import HeroName from "./HeroName";
 import Carousel from "./Carousel";
 import CarouselItem from "./CarouselItem";
 import BurgerIcon from "./BurgerIcon";
