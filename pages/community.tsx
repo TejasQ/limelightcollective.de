@@ -31,10 +31,16 @@ const LocalBall = styled.div`
   color: white;
   border-radius: 50%;
   z-index: 100;
-  backdrop-filter: blur(10px);
+  background-size: cover;
+  background-position: center;
+  background-image: url(/images/community-bg.jpg);
   transform: none;
   grid-column: 4 / span 12;
   grid-row: 1 / span 13;
+
+  p {
+    font-size: 1.3rem;
+  }
 `;
 
 const Container = styled(Page)`
@@ -56,7 +62,7 @@ const BallsContainer = styled.div`
 `;
 
 const Ball = styled.div`
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0, 1.9);
+  transition: transform 0.6s cubic-bezier(0.66, 0.19, 0.38, 0.99);
   width: 170px;
   height: 170px;
   display: flex;
@@ -69,10 +75,11 @@ const Ball = styled.div`
   word-break: break-all;
   padding: 16px;
   overflow: hidden;
-  border: 2px solid white;
   color: white;
   border-radius: 50%;
   backdrop-filter: blur(10px);
+  overflow: visible;
+
   cursor: pointer;
   :hover {
     transform: scale(1.1);
@@ -95,6 +102,45 @@ const ballRows = {
     gridColumn: 16,
   },
 } as const;
+
+const ballImages = {
+  "Our Community": {
+    style: {
+      width: "540px",
+      position: "absolute",
+      top: "-67px",
+      left: "-235px",
+    },
+    url: "/images/community-circle-2.png",
+  },
+  "Get Involved": {
+    url: "/images/community-circle-5.png",
+    style: {
+      width: "578px",
+      position: "absolute",
+      left: "-100px",
+      top: "-138px",
+    },
+  },
+  "Prayer Dance": {
+    url: "/images/community-circle-4.png",
+    style: {
+      width: "560px",
+      position: "absolute",
+      top: "-124px",
+      left: "-215px",
+    },
+  },
+  "Soul Space": {
+    url: "/images/community-circle-1.png",
+    style: {
+      width: "500px",
+      position: "absolute",
+      top: "-67px",
+      left: "-160px",
+    },
+  },
+};
 
 const activeBallRows = {
   "Get Involved": {
@@ -121,20 +167,18 @@ const activeBallRows = {
 
 const CommunityPage = ({ balls }: CommunityProps) => {
   const [currentBall, setCurrentBall] = useState(0);
-  const visibleBalls = useMemo(() => balls.filter(b => b["Should Show"]), [balls]);
 
   return (
     <Container>
       <br />
       <br />
       <br />
-
       <LocalTitle>Community</LocalTitle>
       <br />
       <br />
       <br />
       <BallsContainer>
-        {visibleBalls.map((b, i) => (
+        {balls.map((b, i) => (
           <Ball
             onClick={() => setCurrentBall(i)}
             style={{
@@ -142,13 +186,14 @@ const CommunityPage = ({ balls }: CommunityProps) => {
             }}
             key={b.Name}
           >
-            {b.Name}
+            <div style={{ position: "relative", zIndex: 50 }}>{b.Name}</div>
+            <img alt="LOL" style={ballImages[b.Name].style} src={ballImages[b.Name].url} />
           </Ball>
         ))}
         <LocalBall>
           <div style={{ textAlign: "center", maxWidth: "80%" }}>
-            <Title>{visibleBalls[currentBall].Name}</Title>
-            <ReactMarkdown>{visibleBalls[currentBall].Content}</ReactMarkdown>
+            <Title>{balls[currentBall].Name}</Title>
+            <ReactMarkdown>{balls[currentBall].Content}</ReactMarkdown>
           </div>
         </LocalBall>
       </BallsContainer>
@@ -156,11 +201,14 @@ const CommunityPage = ({ balls }: CommunityProps) => {
   );
 };
 
-CommunityPage.getInitialProps = async () => {
+export const getStaticProps = async () => {
   const data = await getFromAirTable("Community")
     .select({ fields: ["Name", "Content", "Should Show"] })
     .all();
-  return { balls: data.map(d => d.fields) };
+  return {
+    unstable_revalidate: true,
+    props: { balls: data.filter((b) => b.fields["Should Show"]).map((d) => d.fields) },
+  };
 };
 
 export default CommunityPage;
