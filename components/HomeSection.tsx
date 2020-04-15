@@ -9,7 +9,6 @@ import SpaceButton from "./SpaceButton";
 import ArtsButton from "./ArtsButton";
 import Carousel from "./Carousel";
 import CarouselItem from "./CarouselItem";
-import BurgerIcon from "./BurgerIcon";
 
 const Container = styled.div`
   width: 100%;
@@ -39,7 +38,6 @@ type HomeSectionProps = {
 const HomeSection: FC<HomeSectionProps> = ({ events }) => {
   return (
     <Page>
-      <BurgerIcon />
       <Container>
         <Stage>
           <div>
@@ -52,7 +50,7 @@ const HomeSection: FC<HomeSectionProps> = ({ events }) => {
           <footer>
             <Carousel>
               {events &&
-                events.map(e => (
+                events.map((e) => (
                   <CarouselItem
                     event={{
                       id: e.id,
