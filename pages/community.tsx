@@ -108,8 +108,9 @@ const ballImages = {
     style: {
       width: "540px",
       position: "absolute",
-      top: "-67px",
-      left: "-235px",
+      top: "-97px",
+      left: "-249px",
+      zIndex: 30,
     },
     url: "/images/community-circle-2.png",
   },
@@ -118,8 +119,9 @@ const ballImages = {
     style: {
       width: "578px",
       position: "absolute",
-      left: "-100px",
-      top: "-138px",
+      left: "-120px",
+      top: "-189px",
+      zIndex: 30,
     },
   },
   "Prayer Dance": {
@@ -127,8 +129,9 @@ const ballImages = {
     style: {
       width: "560px",
       position: "absolute",
-      top: "-124px",
-      left: "-215px",
+      top: "-176px",
+      left: "-227px",
+      zIndex: 30,
     },
   },
   "Soul Space": {
@@ -136,8 +139,9 @@ const ballImages = {
     style: {
       width: "500px",
       position: "absolute",
-      top: "-67px",
-      left: "-160px",
+      top: "-120px",
+      left: "-180px",
+      zIndex: 30,
     },
   },
 };
@@ -186,8 +190,22 @@ const CommunityPage = ({ balls }: CommunityProps) => {
             }}
             key={b.Name}
           >
-            <div style={{ position: "relative", zIndex: 50 }}>{b.Name}</div>
-            <img alt="LOL" style={ballImages[b.Name].style} src={ballImages[b.Name].url} />
+            <div style={{ width: 170, height: 170, position: "relative" }}>
+              <span
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  width: "100%",
+                  height: "100%",
+                  transform: "translate(-50%,-50%)",
+                  zIndex: 50,
+                }}
+              >
+                {b.Name}
+              </span>
+              <img alt="LOL" style={ballImages[b.Name].style} src={ballImages[b.Name].url} />
+            </div>
           </Ball>
         ))}
         <LocalBall>
