@@ -139,8 +139,6 @@ export const getStaticProps = async () => {
 const ProductionOrClassContainer = styled.div`
   display: grid;
   gap: 16px;
-  max-height: 60vh;
-  overflow: auto;
 
   img {
     max-width: 200px;
@@ -190,6 +188,8 @@ const Stage = styled.div`
   padding: 16px;
   color: black;
   font-weight: 500;
+  height: 60vh;
+  overflow: auto;
 `;
 
 export default ArtsPage;
