@@ -34,7 +34,7 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
           </SidebarItemContainer>
         </div>
         <div style={{ position: "relative" }}>
-          <SpaceTriangle content={sections[activeSection].Content} size={574}>
+          <SpaceTriangle shade content={sections[activeSection].Content} size={574}>
             <ReactMarkdown>{sections[activeSection].Content || ""}</ReactMarkdown>
           </SpaceTriangle>
           <SpaceTriangle
