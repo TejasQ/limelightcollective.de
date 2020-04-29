@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import Page from "../components/Page";
 import Title from "../components/Title";
 import { getFromAirTable } from "../util/getFromAirTable";
+import { css } from "@emotion/core";
 
 type CommunityProps = {
   balls: {
@@ -35,8 +36,13 @@ const LocalBall = styled.div`
   background-position: center;
   background-image: url(/images/community-bg.jpg);
   transform: none;
-  grid-column: 4 / span 12;
-  grid-row: 1 / span 13;
+  grid-column: 2 / span 12;
+  grid-row: 2 / span 13;
+
+  @media (min-width: 1024px) {
+    grid-column: 4 / span 12;
+    grid-row: 1 / span 13;
+  }
 
   p {
     font-size: 1.3rem;
@@ -87,20 +93,30 @@ const Ball = styled.div`
 `;
 
 const ballRows = {
-  "Get Involved": {
-    gridRow: 9,
-  },
-  "Prayer Dance": {
-    gridColumn: 16,
-    gridRow: 11,
-  },
-  "Soul Space": {
-    gridRow: 2,
-  },
-  "Our Community": {
-    gridRow: 1,
-    gridColumn: 16,
-  },
+  "Get Involved": css`
+    grid-row: 15;
+    @media (min-width: 1024px) {
+      grid-row: 9;
+    }
+  `,
+  "Prayer Dance": css`
+    grid-column: 11;
+    grid-row: 15;
+    @media (min-width: 1024px) {
+      grid-column: 16;
+      grid-row: 11;
+    }
+  `,
+  "Soul Space": css`
+    grid-row: 2;
+  `,
+  "Our Community": css`
+    grid-row: 1;
+    grid-column: 11;
+    @media (min-width: 1024px) {
+      grid-column: 16;
+    }
+  `,
 } as const;
 
 const ballImages = {
@@ -147,26 +163,37 @@ const ballImages = {
 };
 
 const activeBallRows = {
-  "Get Involved": {
-    ...ballRows["Get Involved"],
-    transform: "translate(100px, -50px)",
-    animation: "none",
-  },
-  "Prayer Dance": {
-    ...ballRows["Prayer Dance"],
-    transform: "translate(-160px, -50px)",
-    animation: "none",
-  },
-  "Soul Space": {
-    ...ballRows["Soul Space"],
-    transform: "translate(100px, 90px)",
-    animation: "none",
-  },
-  "Our Community": {
-    ...ballRows["Our Community"],
-    transform: "translate(-140px, 40px)",
-    animation: "none",
-  },
+  "Get Involved": css`
+    ${ballRows["Get Involved"].styles}
+    transform: translate(100px, -50px) !important;
+    animation: none !important;
+  `,
+  "Prayer Dance": css`
+    ${ballRows["Prayer Dance"].styles}
+    animation: none !important;
+    transform: translate(-80px, -50px) !important;
+    @media (min-width: 1024px) {
+      transform: translate(-160px, -50px) !important;
+    }
+  `,
+  "Soul Space": css`
+    ${ballRows["Soul Space"].styles}
+    animation: none !important;
+    transform: translate(80px, 50px) !important;
+
+    @media (min-width: 1024) {
+      transform: translate(100px, 90px) !important;
+    }
+  `,
+  "Our Community": css`
+    ${ballRows["Our Community"].styles}
+    animation: none !important;
+    transform: translate(-20px, 40px) !important;
+
+    @media (min-width: 1024px) {
+      transform: translate(-140px, 40px) !important;
+    }
+  `,
 } as const;
 
 const CommunityPage = ({ balls }: CommunityProps) => {
@@ -185,7 +212,7 @@ const CommunityPage = ({ balls }: CommunityProps) => {
         {balls.map((b, i) => (
           <Ball
             onClick={() => setCurrentBall(i)}
-            style={{
+            css={{
               ...(i === currentBall ? activeBallRows : ballRows)[b.Name],
             }}
             key={b.Name}

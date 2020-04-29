@@ -15,6 +15,22 @@ const Container = styled(Page)`
   background-size: cover;
 `;
 
+const SpaceLayout = styled(TwoColumnPageLayout)`
+  padding: 0;
+  grid-template-columns: auto;
+  grid-template-rows: max-content auto;
+  place-items: center;
+  place-content: center;
+
+  @media (min-width: 1024px) {
+    grid-template-rows: auto;
+    padding: 100px 16px 0;
+    grid-template-columns: 2fr 3fr;
+    place-items: flex-start;
+    place-content: flex-start;
+  }
+`;
+
 const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { url: string }[] }[] }> = ({
   sections,
 }) => {
@@ -22,7 +38,7 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
 
   return (
     <Container>
-      <TwoColumnPageLayout>
+      <SpaceLayout>
         <div>
           <Title>Space</Title>
           <SidebarItemContainer>
@@ -51,7 +67,7 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
             </AttachmentsContainer>
           )}
         </div>
-      </TwoColumnPageLayout>
+      </SpaceLayout>
     </Container>
   );
 };

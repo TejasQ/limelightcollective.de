@@ -13,6 +13,7 @@ class MyDocument extends Document {
         <Global styles={globalStyles} />
         <Html lang="en">
           <Head>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="preload" as="image" href="/images/arts-hover.png"></link>
             <link rel="preload" as="image" href="/images/space-hover.png"></link>
             <link rel="preload" as="image" href="/images/community-hover.png"></link>

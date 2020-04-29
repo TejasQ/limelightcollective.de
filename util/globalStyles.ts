@@ -7,6 +7,7 @@ export default css`
     padding: 0;
     font-family: body;
     background: black;
+    color: white;
   }
 
   @font-face {

@@ -11,8 +11,11 @@ import styled from "@emotion/styled";
 import { useAirTable } from "../hooks/useAirTable";
 import { FooterResult } from "../types/airtable";
 import ReactMarkdown from "react-markdown";
+import Div100vh from "react-div-100vh";
 
-const ThisPage = styled(Page)``;
+const ThisPage = styled(Div100vh)`
+  position: relative;
+`;
 
 const DonateAndContactSection: FC = () => {
   const [currentPage, setCurrentPage] = useState<"donate" | "contact">("donate");

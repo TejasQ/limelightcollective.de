@@ -10,8 +10,9 @@ import SidebarItemContainer from "./SidebarItemContainer";
 import styled from "@emotion/styled";
 import { useAirTable } from "../hooks/useAirTable";
 import { FooterResult, TeamResult } from "../types/airtable";
+import Div100vh from "react-div-100vh";
 
-const ThisPage = styled(Page)``;
+const ThisPage = styled(Div100vh)``;
 
 const TeamLayout = styled.div`
   display: grid;

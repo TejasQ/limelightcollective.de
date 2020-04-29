@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
-import Link from "next/link";
+import Div100vh from "react-div-100vh";
 
 import Page from "./Page";
 import Logo from "./Logo";
@@ -10,11 +10,12 @@ import ArtsButton from "./ArtsButton";
 import Carousel from "./Carousel";
 import CarouselItem from "./CarouselItem";
 
-const Container = styled.div`
+const Container = styled(Div100vh)`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   color: white;
+  overflow: hidden;
 `;
 
 const Stage = styled.div`
