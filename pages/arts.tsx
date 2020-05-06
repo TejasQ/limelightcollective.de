@@ -50,7 +50,14 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
                   <ProductionOrClassMeta>
                     <ProductionOrClassTitle>{e.name}</ProductionOrClassTitle>
                     <span>
-                      {new Intl.DateTimeFormat("en-US").format(new Date(e.start_time))} ・{" "}
+                      {(() => {
+                        try {
+                          return new Date(e.start_time).toISOString().split("T")[0];
+                        } catch {
+                          return null;
+                        }
+                      })()}{" "}
+                      ・{" "}
                       <a
                         style={{ color: "currentColor" }}
                         rel="noreferrer noopener"
@@ -221,7 +228,6 @@ const Stage = styled.div`
   font-weight: 500;
   overflow: auto;
   grid-row: 3;
-  height: 100%;
 
   ::-webkit-scrollbar-track {
     background-color: #fff;
