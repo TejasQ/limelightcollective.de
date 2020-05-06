@@ -85,8 +85,8 @@ export default css`
   }
 
   p {
-    line-height: 32px;
-    font-size: 17px;
+    line-height: 25px;
+    font-size: 19px;
   }
 
   div > p:first-of-type {
