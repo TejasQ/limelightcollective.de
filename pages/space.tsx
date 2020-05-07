@@ -9,6 +9,7 @@ import SidebarItem from "../components/SidebarItem";
 import styled from "@emotion/styled";
 import { getFromAirTable } from "../util/getFromAirTable";
 import ReactMarkdown from "react-markdown";
+import { css } from "@emotion/core";
 
 const Container = styled(Page)`
   background: url("/images/space-bg.jpg");
@@ -27,7 +28,6 @@ const SpaceLayout = styled(TwoColumnPageLayout)`
     padding: 100px 16px 0;
     grid-template-columns: 2fr 3fr;
     place-items: flex-start;
-    place-content: flex-start;
   }
 `;
 
@@ -39,33 +39,50 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
   return (
     <Container>
       <SpaceLayout>
-        <div>
+        <div style={{ position: "relative", padding: "0 8px" }}>
           <Title>Space</Title>
-          <SidebarItemContainer>
+          <SpaceSidebar>
             {sections.map((s, i) => (
               <SidebarItem onClick={() => setActiveSection(i)} key={s.Name} active={activeSection === i}>
                 {s.Name}
               </SidebarItem>
             ))}
-          </SidebarItemContainer>
+          </SpaceSidebar>
         </div>
         <div style={{ position: "relative" }}>
-          <SpaceTriangle shade content={sections[activeSection].Content} size={574}>
-            <ReactMarkdown>{sections[activeSection].Content || ""}</ReactMarkdown>
-          </SpaceTriangle>
+          <SpaceTriangle
+            shade
+            content={
+              <>
+                {sections[activeSection].Content}
+                {sections[activeSection].Attachments && (
+                  <AttachmentsContainer>
+                    {sections[activeSection].Attachments.map((a) => (
+                      <img alt={sections[activeSection].Name} src={a.url} />
+                    ))}
+                  </AttachmentsContainer>
+                )}
+              </>
+            }
+            size={{ desktop: 574, mobile: 180 }}
+          ></SpaceTriangle>
           <SpaceTriangle
             content=""
-            style={{ position: "absolute", top: -9, left: -23, background: "white", zIndex: 99 }}
-            size={620}
-          />
+            css={css`
+              position: absolute;
+              top: 3px;
+              left: 0;
+              background: white;
+              z-index: 99;
+              transform: scale(1.05);
 
-          {sections[activeSection].Attachments && (
-            <AttachmentsContainer>
-              {sections[activeSection].Attachments.map((a) => (
-                <img alt={sections[activeSection].Name} src={a.url} />
-              ))}
-            </AttachmentsContainer>
-          )}
+              @media (min-width: 768px) {
+                height: 590px;
+                width: 574px;
+              }
+            `}
+            size={{ desktop: 620, mobile: 180 }}
+          />
         </div>
       </SpaceLayout>
     </Container>
@@ -82,13 +99,35 @@ export const getStaticProps = async () => {
   };
 };
 
+const SpaceSidebar = styled(SidebarItemContainer)`
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: auto;
+    transform: skew(25deg, 0deg);
+    position: absolute;
+    right: -208px;
+    z-index: 300;
+  }
+`;
+
 const AttachmentsContainer = styled.div`
-  width: 100%;
+  width: calc(100% + 32vw);
   display: flex;
   flex-wrap: wrap;
+  display: grid;
+  gap: 8px;
+  margin: -8px -16vw;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    width: calc(100% + 78px);
+    margin: 0 -39px;
+  }
 
   img {
-    max-width: 200px;
+    width: 100%;
   }
 `;
 

@@ -12,6 +12,10 @@ const SidebarItem = styled.li<{ active: boolean }>(({ active }) => ({
   background: active ? "white" : "#0006",
   color: active ? "#000" : "currentColor",
 
+  "> *": {
+    pointerEvents: "none",
+  },
+
   ":hover": {
     background: "white",
     color: "black",
