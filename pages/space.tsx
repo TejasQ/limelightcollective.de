@@ -58,7 +58,11 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
                 {sections[activeSection].Attachments && (
                   <AttachmentsContainer>
                     {sections[activeSection].Attachments.map((a) => (
-                      <img alt={sections[activeSection].Name} src={a.url} />
+                      <img
+                        onClick={() => window.open(a.url, "_blank")}
+                        alt={sections[activeSection].Name}
+                        src={a.url}
+                      />
                     ))}
                   </AttachmentsContainer>
                 )}
