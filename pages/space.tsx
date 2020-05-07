@@ -9,7 +9,7 @@ import SidebarItem from "../components/SidebarItem";
 import styled from "@emotion/styled";
 import { getFromAirTable } from "../util/getFromAirTable";
 import ReactMarkdown from "react-markdown";
-import { css } from "@emotion/core";
+import { css, Global } from "@emotion/core";
 
 const Container = styled(Page)`
   background: url("/images/space-bg.jpg");
@@ -38,6 +38,14 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
 
   return (
     <Container>
+      <Global
+        styles={css`
+          html,
+          body {
+            overflow: hidden;
+          }
+        `}
+      />
       <SpaceLayout>
         <div style={{ position: "relative", padding: "0 8px" }}>
           <Title>Space</Title>
@@ -54,7 +62,7 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
             shade
             content={
               <>
-                {sections[activeSection].Content}
+                <ReactMarkdown>{sections[activeSection].Content}</ReactMarkdown>
                 {sections[activeSection].Attachments && (
                   <AttachmentsContainer>
                     {sections[activeSection].Attachments.map((a) => (

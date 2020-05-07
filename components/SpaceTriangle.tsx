@@ -13,7 +13,6 @@ export const SpaceTriangle: FC<{
       <Board>
         <BoardChild>
           {content}
-          {content}
           <br />
           <br />
           <br />
@@ -38,7 +37,7 @@ const BoardChild = styled.div`
   transform: rotateX(-44deg) rotateY(0deg) scale(0.8);
   width: 100%;
   margin: 0 auto;
-  padding: 6vw 16vw;
+  padding: 6vw 12vw;
   height: calc(100vw - 16px);
   overflow: auto;
 
@@ -46,7 +45,7 @@ const BoardChild = styled.div`
     transform: translateY(9px) rotateX(-44deg) rotateY(0deg) scale(0.8);
     width: calc(100% - 91px);
     margin: 0 auto;
-    padding: 16px 39px;
+    padding: 24px 39px;
     height: 560px;
     overflow: auto;
   }
