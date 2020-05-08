@@ -16,10 +16,13 @@ const ThisPage = styled(Div100vh)``;
 
 const TeamLayout = styled.div`
   display: grid;
-  grid-template-columns: 150px auto;
   gap: 16px;
   height: 100%;
   overflow: auto;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 150px auto;
+  }
 `;
 
 const ProfilePic = styled.div<{ src: string }>(({ src }) => ({

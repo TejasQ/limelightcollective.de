@@ -1,11 +1,12 @@
 import React from "react";
 import nodeFetch from "node-fetch";
 import styled from "@emotion/styled";
-import Div from "react-div-100vh";
 
 import HomeSection from "../components/HomeSection";
 import AboutSection from "../components/AboutSection";
 import DonateAndContactSection from "../components/DonateAndContactSection";
+import Footer from "../components/Footer";
+import CommunityPage from "./community";
 
 const PageContainer = styled("div")`
   background-image: url("/images/home-bg.jpg");
@@ -31,6 +32,7 @@ const Home = ({ events }) => (
     <HomeSection events={events} />
     <AboutSection />
     <DonateAndContactSection />
+    <Footer />
   </PageContainer>
 );
 

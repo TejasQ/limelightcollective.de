@@ -1,17 +1,16 @@
 import React, { FC, useEffect, useState } from "react";
 
 import TwoColumnPageLayout from "./TwoColumnPageLayout";
-import Page from "./Page";
 import Title from "./Title";
 import PageContent from "./PageContent";
 import SidebarItem from "./SidebarItem";
 import SidebarItemContainer from "./SidebarItemContainer";
-import Footer from "./Footer";
 import styled from "@emotion/styled";
 import { useAirTable } from "../hooks/useAirTable";
 import { FooterResult } from "../types/airtable";
 import ReactMarkdown from "react-markdown";
 import Div100vh from "react-div-100vh";
+import { css } from "@emotion/core";
 
 const ThisPage = styled(Div100vh)`
   position: relative;
@@ -42,7 +41,15 @@ const DonateAndContactSection: FC = () => {
             </SidebarItem>
           </SidebarItemContainer>
         </div>
-        <div>
+        <div
+          css={css`
+            height: 100%;
+            overflow: auto;
+            @media (min-width: 768px) {
+              height: auto;
+            }
+          `}
+        >
           <PageContent>
             {currentPage === "donate" && (
               <>
@@ -59,7 +66,6 @@ const DonateAndContactSection: FC = () => {
           </PageContent>
         </div>
       </TwoColumnPageLayout>
-      <Footer />
     </ThisPage>
   );
 };

@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 
 const Container = styled.footer`
-  position: absolute;
   bottom: 0;
   width: 100%;
   height: 250px;
@@ -12,6 +11,7 @@ const Container = styled.footer`
   background-size: 90%;
   background-repeat: no-repeat;
   background-position: center 60px;
+  padding: 16px;
   padding-top: 120px;
   display: flex;
   align-items: center;
