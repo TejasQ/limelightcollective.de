@@ -21,6 +21,6 @@ const renderLink: FC<HTMLAttributes<HTMLAnchorElement>> = (props) => {
   );
 };
 
-export const Markdown: FC<{ children: string }> = () => {
-  return <ReactMarkdown renderers={{ link: renderLink }} />;
+export const Markdown: FC<{ children: string }> = (props) => {
+  return <ReactMarkdown {...props} renderers={{ link: renderLink }} />;
 };
