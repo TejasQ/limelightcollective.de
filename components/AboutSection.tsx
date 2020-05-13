@@ -60,7 +60,7 @@ const AboutSection: FC = () => {
             </SidebarItem>
           </SidebarItemContainer>
         </div>
-        <div style={{ height: "100%", overflow: "auto" }}>
+        <div style={{ overflow: "auto" }}>
           <PageContent>
             {currentPage === "concept" && (
               <>
