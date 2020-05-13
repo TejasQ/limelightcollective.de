@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import styled from "@emotion/styled";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "../components/Markdown";
 
 import Page from "../components/Page";
 import Title from "../components/Title";
@@ -365,7 +365,7 @@ const CommunityPage = ({ balls }: CommunityProps) => {
             `}
           >
             <Title>{balls[currentBall].Name}</Title>
-            <ReactMarkdown>{balls[currentBall].Content}</ReactMarkdown>
+            <Markdown>{balls[currentBall].Content}</Markdown>
           </div>
         </LocalBall>
       </BallsContainer>

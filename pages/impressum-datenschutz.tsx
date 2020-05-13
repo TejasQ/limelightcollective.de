@@ -7,7 +7,7 @@ import Title from "../components/Title";
 import SidebarItemContainer from "../components/SidebarItemContainer";
 import SidebarItem from "../components/SidebarItem";
 import PageContent from "../components/PageContent";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "../components/Markdown";
 import { FooterResult } from "../types/airtable";
 import { getFromAirTable } from "../util/getFromAirTable";
 import { trackEvent } from "../util/trackEvent";
@@ -40,9 +40,9 @@ const ImpressumPage: FC<any> = ({ footerData }) => {
         </div>
         <div>
           <PageContent>
-            <ReactMarkdown>
+            <Markdown>
               {footerData && footerData.find((d: FooterResult["fields"]) => d.Name === "Impressum/Datenschutz").Notes}
-            </ReactMarkdown>
+            </Markdown>
           </PageContent>
         </div>
       </TwoColumnPageLayout>

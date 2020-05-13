@@ -1,7 +1,7 @@
 import { css, Global } from "@emotion/core";
 import styled from "@emotion/styled";
 import React, { FC, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "../components/Markdown";
 import Page from "../components/Page";
 import SidebarItem from "../components/SidebarItem";
 import SidebarItemContainer from "../components/SidebarItemContainer";
@@ -73,7 +73,7 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
             shade
             content={
               <>
-                <ReactMarkdown>{sections[activeSection].Content}</ReactMarkdown>
+                <Markdown>{sections[activeSection].Content}</Markdown>
                 {sections[activeSection].Attachments && (
                   <AttachmentsContainer>
                     {sections[activeSection].Attachments.map((a) => (

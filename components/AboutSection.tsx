@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "./Markdown";
 import styled from "@emotion/styled";
 import Div100vh from "react-div-100vh";
 
@@ -69,7 +69,7 @@ const AboutSection: FC<any> = ({ footerData, teamData }) => {
               <>
                 {" "}
                 <Title condensed>Our Concept</Title>
-                <ReactMarkdown>{notes}</ReactMarkdown>
+                <Markdown>{notes}</Markdown>
               </>
             )}
             {currentPage === "team" && (
@@ -80,8 +80,8 @@ const AboutSection: FC<any> = ({ footerData, teamData }) => {
                     <TeamLayout key={String(t.ID)}>
                       {t.Attachments ? <ProfilePic src={t.Attachments[0].url} /> : <div />}
                       <div>
-                        <ReactMarkdown>{t.Name}</ReactMarkdown>
-                        <ReactMarkdown>{t.Notes}</ReactMarkdown>
+                        <Markdown>{t.Name}</Markdown>
+                        <Markdown>{t.Notes}</Markdown>
                       </div>
                     </TeamLayout>
                   ))}

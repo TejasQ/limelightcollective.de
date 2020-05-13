@@ -7,7 +7,7 @@ import SidebarItem from "./SidebarItem";
 import SidebarItemContainer from "./SidebarItemContainer";
 import styled from "@emotion/styled";
 import { FooterResult } from "../types/airtable";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "./Markdown";
 import Div100vh from "react-div-100vh";
 import { css } from "@emotion/core";
 import { trackEvent } from "../util/trackEvent";
@@ -61,13 +61,13 @@ const DonateAndContactSection: FC<any> = ({ footerData }) => {
             {currentPage === "donate" && (
               <>
                 <Title condensed>Donate</Title>
-                <ReactMarkdown>{donateNotes}</ReactMarkdown>
+                <Markdown>{donateNotes}</Markdown>
               </>
             )}
             {currentPage === "contact" && (
               <>
                 <Title condensed>Contact</Title>
-                <ReactMarkdown>{contactNotes}</ReactMarkdown>
+                <Markdown>{contactNotes}</Markdown>
               </>
             )}
           </PageContent>

@@ -5,7 +5,7 @@ import nodeFetch from "node-fetch";
 import Page from "../components/Page";
 import Title from "../components/Title";
 import { getFromAirTable } from "../util/getFromAirTable";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "../components/Markdown";
 import { trackEvent } from "../util/trackEvent";
 
 type Section = {
@@ -48,7 +48,7 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
           ))}
         </Sections>
         <Stage>
-          <ReactMarkdown>{sections[currentPage].Content?.replace("<!-- FB EVENTS -->", "")}</ReactMarkdown>
+          <Markdown>{sections[currentPage].Content?.replace("<!-- FB EVENTS -->", "")}</Markdown>
           {sections[currentPage].Content === "<!-- FB EVENTS -->" && events && (
             <ProductionOrClassContainer>
               {events.map((e) => (
@@ -74,7 +74,7 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
                         Sign up
                       </a>
                     </span>
-                    <ReactMarkdown>{e.description}</ReactMarkdown>
+                    <Markdown>{e.description}</Markdown>
                   </ProductionOrClassMeta>
                 </ProductionOrClass>
               ))}
@@ -87,7 +87,7 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
                   <img alt={p.Name} src={p.Image[0].url} />
                   <ProductionOrClassMeta>
                     <ProductionOrClassTitle>{p.Name}</ProductionOrClassTitle>
-                    <ReactMarkdown>{p.Description}</ReactMarkdown>
+                    <Markdown>{p.Description}</Markdown>
                   </ProductionOrClassMeta>
                 </ProductionOrClass>
               ))}
@@ -101,7 +101,7 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
                   <img alt={p.Name} src={p.Attachments[0].url} />
                   <ProductionOrClassMeta>
                     <ProductionOrClassTitle>{p.Name}</ProductionOrClassTitle>
-                    <ReactMarkdown>{p.Notes}</ReactMarkdown>
+                    <Markdown>{p.Notes}</Markdown>
                   </ProductionOrClassMeta>
                 </ProductionOrClass>
               ))}
