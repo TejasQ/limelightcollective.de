@@ -1,22 +1,51 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { trackEvent } from "../util/trackEvent";
 
 export const Menu: FC<{ close: () => void }> = ({ close }) => {
   return (
     <Container>
       <Content>
         <Link href="/">
-          <Item onClick={close}>Home</Item>
+          <Item
+            onClick={() => {
+              close();
+              trackEvent({ category: "Navigation", action: "Navigate", label: "Home" });
+            }}
+          >
+            Home
+          </Item>
         </Link>
         <Link href="/community">
-          <Item onClick={close}>Community</Item>
+          <Item
+            onClick={() => {
+              close();
+              trackEvent({ category: "Navigation", action: "Navigate", label: "Community" });
+            }}
+          >
+            Community
+          </Item>
         </Link>
         <Link href="/arts">
-          <Item onClick={close}>Arts</Item>
+          <Item
+            onClick={() => {
+              close();
+              trackEvent({ category: "Navigation", action: "Navigate", label: "Arts" });
+            }}
+          >
+            Arts
+          </Item>
         </Link>
         <Link href="/space">
-          <Item onClick={close}>Space</Item>
+          <Item
+            onClick={() => {
+              close();
+              trackEvent({ category: "Navigation", action: "Navigate", label: "Space" });
+            }}
+          >
+            Space
+          </Item>
         </Link>
       </Content>
     </Container>

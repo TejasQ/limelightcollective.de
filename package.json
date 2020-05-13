@@ -2,7 +2,7 @@
   "scripts": {
     "build": "next build",
     "export": "next export",
-    "deploy": "npm run build && npm run export"
+    "deploy": "rm -rf out && npm run build && npm run export && ncftpput -R -z -u $(echo $FTP_USERNAME) -p $(echo $FTP_PASSWORD) ftp.limelightcollective.com . ./out/*"
   },
   "dependencies": {
     "@emotion/core": "^10.0.27",
@@ -13,6 +13,7 @@
     "react": "^16.12.0",
     "react-div-100vh": "^0.3.8",
     "react-dom": "^16.12.0",
+    "react-ga": "^2.7.0",
     "react-markdown": "^4.3.1"
   },
   "devDependencies": {

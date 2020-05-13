@@ -6,6 +6,7 @@ import Page from "../components/Page";
 import Title from "../components/Title";
 import { getFromAirTable } from "../util/getFromAirTable";
 import ReactMarkdown from "react-markdown";
+import { trackEvent } from "../util/trackEvent";
 
 type Section = {
   Name: string;
@@ -35,7 +36,13 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
         <Title style={{ margin: "0 auto", textAlign: "center" }}>Arts</Title>
         <Sections count={sections.length}>
           {sections.map((p, i) => (
-            <Section isActive={currentPage === i} onClick={() => setCurrentPage(i)}>
+            <Section
+              isActive={currentPage === i}
+              onClick={() => {
+                setCurrentPage(i);
+                trackEvent({ category: "Arts", action: "Go to Section", label: p.Name });
+              }}
+            >
               {p.Name}
             </Section>
           ))}

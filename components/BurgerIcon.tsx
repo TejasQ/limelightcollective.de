@@ -1,9 +1,15 @@
 import styled from "@emotion/styled";
 import { FC } from "react";
+import { trackEvent } from "../util/trackEvent";
 
 export const BurgerIcon: FC<{ onClick: () => void; isActive: boolean }> = ({ onClick, isActive }) => {
   return (
-    <Container onClick={onClick}>
+    <Container
+      onClick={() => {
+        onClick();
+        trackEvent({ category: "Navigation", action: "Click on Navigation" });
+      }}
+    >
       <Patty style={isActive ? { transform: "rotate(45deg) translate(7px, 7px)" } : undefined} />
       <Patty style={isActive ? { opacity: 0 } : undefined} />
       <Patty style={isActive ? { transform: "rotate(-45deg) translate(7px, -7px)" } : undefined} />

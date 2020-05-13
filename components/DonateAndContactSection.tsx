@@ -10,6 +10,7 @@ import { FooterResult } from "../types/airtable";
 import ReactMarkdown from "react-markdown";
 import Div100vh from "react-div-100vh";
 import { css } from "@emotion/core";
+import { trackEvent } from "../util/trackEvent";
 
 const ThisPage = styled(Div100vh)`
   position: relative;
@@ -27,10 +28,22 @@ const DonateAndContactSection: FC<any> = ({ footerData }) => {
         <div>
           <Title condensed>Donate &amp; Contact</Title>
           <SidebarItemContainer>
-            <SidebarItem active={currentPage === "donate"} onClick={() => setCurrentPage("donate")}>
+            <SidebarItem
+              active={currentPage === "donate"}
+              onClick={() => {
+                trackEvent({ category: "Home", action: "Click on Donate" });
+                setCurrentPage("donate");
+              }}
+            >
               Donate
             </SidebarItem>
-            <SidebarItem active={currentPage === "contact"} onClick={() => setCurrentPage("contact")}>
+            <SidebarItem
+              active={currentPage === "contact"}
+              onClick={() => {
+                trackEvent({ category: "Home", action: "Click on Contact" });
+                setCurrentPage("contact");
+              }}
+            >
               Contact
             </SidebarItem>
           </SidebarItemContainer>

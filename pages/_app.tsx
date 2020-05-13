@@ -1,6 +1,7 @@
 import { AppProps } from "next/app";
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Global } from "@emotion/core";
+import ReactGA from "react-ga";
 
 import globalStyles from "../util/globalStyles";
 import { BurgerIcon } from "../components/BurgerIcon";
@@ -14,6 +15,11 @@ if (typeof navigator !== "undefined" && "serviceWorker" in navigator) {
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+
+  useEffect(() => {
+    ReactGA.initialize("UA-97872345-4");
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return (
     <>

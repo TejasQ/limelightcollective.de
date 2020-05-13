@@ -1,15 +1,15 @@
-import React, { FC, useState } from "react";
-
-import Page from "../components/Page";
-import { SpaceTriangle } from "../components/SpaceTriangle";
-import TwoColumnPageLayout from "../components/TwoColumnPageLayout";
-import Title from "../components/Title";
-import SidebarItemContainer from "../components/SidebarItemContainer";
-import SidebarItem from "../components/SidebarItem";
-import styled from "@emotion/styled";
-import { getFromAirTable } from "../util/getFromAirTable";
-import ReactMarkdown from "react-markdown";
 import { css, Global } from "@emotion/core";
+import styled from "@emotion/styled";
+import React, { FC, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import Page from "../components/Page";
+import SidebarItem from "../components/SidebarItem";
+import SidebarItemContainer from "../components/SidebarItemContainer";
+import { SpaceTriangle } from "../components/SpaceTriangle";
+import Title from "../components/Title";
+import TwoColumnPageLayout from "../components/TwoColumnPageLayout";
+import { getFromAirTable } from "../util/getFromAirTable";
+import { trackEvent } from "../util/trackEvent";
 
 const Container = styled(Page)`
   background: url("/images/space-bg.jpg");
@@ -51,7 +51,18 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
           <Title>Space</Title>
           <SpaceSidebar>
             {sections.map((s, i) => (
-              <SidebarItem onClick={() => setActiveSection(i)} key={s.Name} active={activeSection === i}>
+              <SidebarItem
+                onClick={() => {
+                  setActiveSection(i);
+                  trackEvent({
+                    category: "Space",
+                    action: "Go to Section",
+                    label: s.Name,
+                  });
+                }}
+                key={s.Name}
+                active={activeSection === i}
+              >
                 {s.Name}
               </SidebarItem>
             ))}
@@ -67,7 +78,14 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
                   <AttachmentsContainer>
                     {sections[activeSection].Attachments.map((a) => (
                       <img
-                        onClick={() => window.open(a.url, "_blank")}
+                        onClick={() => {
+                          window.open(a.url, "_blank");
+                          trackEvent({
+                            category: "Space",
+                            action: "Open Image",
+                            label: a.url,
+                          });
+                        }}
                         alt={sections[activeSection].Name}
                         src={a.url}
                       />

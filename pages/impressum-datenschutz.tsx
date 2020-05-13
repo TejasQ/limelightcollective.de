@@ -10,6 +10,7 @@ import PageContent from "../components/PageContent";
 import ReactMarkdown from "react-markdown";
 import { FooterResult } from "../types/airtable";
 import { getFromAirTable } from "../util/getFromAirTable";
+import { trackEvent } from "../util/trackEvent";
 
 const Container = styled(Page)`
   background: url("/images/bg-home-3.jpg");
@@ -23,7 +24,16 @@ const ImpressumPage: FC<any> = ({ footerData }) => {
         <div style={{ maxWidth: "100%" }}>
           <Title condensed>Impressum / Datenschutz</Title>
           <SidebarItemContainer>
-            <SidebarItem active={false} onClick={() => window.history.back()}>
+            <SidebarItem
+              active={false}
+              onClick={() => {
+                window.history.back();
+                trackEvent({
+                  category: "Datenschutz",
+                  action: "Go Back",
+                });
+              }}
+            >
               Back
             </SidebarItem>
           </SidebarItemContainer>

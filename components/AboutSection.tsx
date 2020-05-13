@@ -9,6 +9,7 @@ import PageContent from "./PageContent";
 import SidebarItem from "./SidebarItem";
 import SidebarItemContainer from "./SidebarItemContainer";
 import { FooterResult, TeamResult } from "../types/airtable";
+import { trackEvent } from "../util/trackEvent";
 
 const ThisPage = styled(Div100vh)``;
 
@@ -42,10 +43,22 @@ const AboutSection: FC<any> = ({ footerData, teamData }) => {
         <div>
           <Title>About</Title>
           <SidebarItemContainer>
-            <SidebarItem active={currentPage === "concept"} onClick={() => setCurrentPage("concept")}>
+            <SidebarItem
+              active={currentPage === "concept"}
+              onClick={() => {
+                setCurrentPage("concept");
+                trackEvent({ category: "Home", action: "Click on Concept" });
+              }}
+            >
               Our Concept
             </SidebarItem>
-            <SidebarItem active={currentPage === "team"} onClick={() => setCurrentPage("team")}>
+            <SidebarItem
+              active={currentPage === "team"}
+              onClick={() => {
+                setCurrentPage("team");
+                trackEvent({ category: "Home", action: "Click on Team" });
+              }}
+            >
               Our Team
             </SidebarItem>
           </SidebarItemContainer>

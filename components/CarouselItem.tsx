@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import { FC } from "react";
+import { trackEvent } from "../util/trackEvent";
 
 interface CarouselItemProps {
   event: { id: string; name: string; date: Date };
@@ -64,7 +65,12 @@ const CarouselItem: FC<CarouselItemProps> = ({ event, imageUrl, children }) => {
   }, []);
 
   return (
-    <Container onClick={() => window.open(`https://facebook.com/event/${event.id}`)}>
+    <Container
+      onClick={() => {
+        window.open(`https://facebook.com/event/${event.id}`);
+        trackEvent({ category: "Home", action: "Go to Event", label: event.name });
+      }}
+    >
       <Description className="description">{children}</Description>
       <Photo imageUrl={imageUrl} />
       <div style={{ padding: 8, textAlign: "center" }}>

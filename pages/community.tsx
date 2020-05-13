@@ -6,6 +6,7 @@ import Page from "../components/Page";
 import Title from "../components/Title";
 import { getFromAirTable } from "../util/getFromAirTable";
 import { css } from "@emotion/core";
+import { trackEvent } from "../util/trackEvent";
 
 type CommunityProps = {
   balls: {
@@ -308,7 +309,14 @@ const CommunityPage = ({ balls }: CommunityProps) => {
       <BallsContainer>
         {balls.map((b, i) => (
           <Ball
-            onClick={() => setCurrentBall(i)}
+            onClick={() => {
+              setCurrentBall(i);
+              trackEvent({
+                category: "Community",
+                action: "Tap on Ball",
+                label: b.Name,
+              });
+            }}
             css={{
               ...(i === currentBall ? activeBallRows : ballRows)[b.Name],
             }}
