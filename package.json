@@ -2,7 +2,8 @@
   "scripts": {
     "build": "next build",
     "export": "next export",
-    "deploy": "rm -rf out && npm run build && npm run export && ncftpput -R -z -u $(echo $FTP_USERNAME) -p $(echo $FTP_PASSWORD) ftp.limelightcollective.com . ./out/*"
+    "deploy": "rm -rf out && npm run build && npm run export",
+    "deploy:ftp": "ncftpput -R -z -u $(echo $FTP_USERNAME) -p $(echo $FTP_PASSWORD) ftp.limelightcollective.com . ./out/*"
   },
   "dependencies": {
     "@emotion/core": "^10.0.27",
