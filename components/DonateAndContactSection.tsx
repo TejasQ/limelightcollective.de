@@ -6,7 +6,6 @@ import PageContent from "./PageContent";
 import SidebarItem from "./SidebarItem";
 import SidebarItemContainer from "./SidebarItemContainer";
 import styled from "@emotion/styled";
-import { useAirTable } from "../hooks/useAirTable";
 import { FooterResult } from "../types/airtable";
 import ReactMarkdown from "react-markdown";
 import Div100vh from "react-div-100vh";
@@ -16,16 +15,11 @@ const ThisPage = styled(Div100vh)`
   position: relative;
 `;
 
-const DonateAndContactSection: FC = () => {
+const DonateAndContactSection: FC<any> = ({ footerData }) => {
   const [currentPage, setCurrentPage] = useState<"donate" | "contact">("donate");
-  const { data, getAll } = useAirTable({ tableName: "Footer" });
 
-  useEffect(() => {
-    getAll(["Notes", "Name"]);
-  }, []);
-
-  const donateNotes = data && data.find((d: FooterResult) => d.fields.Name === "Donate").fields.Notes;
-  const contactNotes = data && data.find((d: FooterResult) => d.fields.Name === "Contact").fields.Notes;
+  const donateNotes = footerData && footerData.find((d: FooterResult["fields"]) => d.Name === "Donate").Notes;
+  const contactNotes = footerData && footerData.find((d: FooterResult["fields"]) => d.Name === "Contact").Notes;
 
   return (
     <ThisPage>

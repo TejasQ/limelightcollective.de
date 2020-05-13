@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import styled from "@emotion/styled";
 
 import Page from "../components/Page";
@@ -8,21 +8,15 @@ import SidebarItemContainer from "../components/SidebarItemContainer";
 import SidebarItem from "../components/SidebarItem";
 import PageContent from "../components/PageContent";
 import ReactMarkdown from "react-markdown";
-import { useAirTable } from "../hooks/useAirTable";
 import { FooterResult } from "../types/airtable";
+import { getFromAirTable } from "../util/getFromAirTable";
 
 const Container = styled(Page)`
   background: url("/images/bg-home-3.jpg");
   background-size: cover;
 `;
 
-const ImpressumPage = () => {
-  const { data, getAll } = useAirTable({ tableName: "Footer" });
-
-  useEffect(() => {
-    getAll(["Notes", "Name"]);
-  }, []);
-
+const ImpressumPage: FC<any> = ({ footerData }) => {
   return (
     <Container>
       <TwoColumnPageLayout>
@@ -37,7 +31,7 @@ const ImpressumPage = () => {
         <div>
           <PageContent>
             <ReactMarkdown>
-              {data && data.find((d: FooterResult) => d.fields.Name === "Impressum/Datenschutz").fields.Notes}
+              {footerData && footerData.find((d: FooterResult["fields"]) => d.Name === "Impressum/Datenschutz").Notes}
             </ReactMarkdown>
           </PageContent>
         </div>
@@ -45,4 +39,15 @@ const ImpressumPage = () => {
     </Container>
   );
 };
+
 export default ImpressumPage;
+
+export const getStaticProps = async () => {
+  const footerData = (
+    await getFromAirTable("Footer")
+      .select({ fields: ["Notes", "Name", "Team"] })
+      .all()
+  ).map((r) => r.fields);
+
+  return { unstable_revalidate: true, props: { footerData } };
+};

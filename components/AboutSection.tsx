@@ -1,16 +1,14 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import styled from "@emotion/styled";
+import Div100vh from "react-div-100vh";
 
 import TwoColumnPageLayout from "./TwoColumnPageLayout";
-import Page from "./Page";
 import Title from "./Title";
 import PageContent from "./PageContent";
 import SidebarItem from "./SidebarItem";
 import SidebarItemContainer from "./SidebarItemContainer";
-import styled from "@emotion/styled";
-import { useAirTable } from "../hooks/useAirTable";
 import { FooterResult, TeamResult } from "../types/airtable";
-import Div100vh from "react-div-100vh";
 
 const ThisPage = styled(Div100vh)``;
 
@@ -34,17 +32,9 @@ const ProfilePic = styled.div<{ src: string }>(({ src }) => ({
   borderRadius: "50%",
 }));
 
-const AboutSection: FC = () => {
+const AboutSection: FC<any> = ({ footerData, teamData }) => {
   const [currentPage, setCurrentPage] = useState<"concept" | "team">("concept");
-  const { data, getAll } = useAirTable({ tableName: "Footer" });
-  const { data: teamData, getAll: getTeamMembers } = useAirTable({ tableName: "Team" });
-
-  useEffect(() => {
-    getAll(["Notes", "Name", "Team"]);
-    getTeamMembers(["ID", "Name", "Notes", "Attachments"]);
-  }, []);
-
-  const notes = data && data.find((d: FooterResult) => d.fields.Name === "About").fields.Notes;
+  const notes = footerData && footerData.find((d: FooterResult["fields"]) => d.Name === "About").Notes;
 
   return (
     <ThisPage>
@@ -73,12 +63,12 @@ const AboutSection: FC = () => {
               <>
                 <Title condensed>Our Team</Title>
                 {teamData &&
-                  teamData.map((t: TeamResult) => (
-                    <TeamLayout key={String(t.fields.ID)}>
-                      {t.fields.Attachments ? <ProfilePic src={t.fields.Attachments[0].url} /> : <div />}
+                  teamData.map((t: TeamResult["fields"]) => (
+                    <TeamLayout key={String(t.ID)}>
+                      {t.Attachments ? <ProfilePic src={t.Attachments[0].url} /> : <div />}
                       <div>
-                        <ReactMarkdown>{t.fields.Name}</ReactMarkdown>
-                        <ReactMarkdown>{t.fields.Notes}</ReactMarkdown>
+                        <ReactMarkdown>{t.Name}</ReactMarkdown>
+                        <ReactMarkdown>{t.Notes}</ReactMarkdown>
                       </div>
                     </TeamLayout>
                   ))}
@@ -90,4 +80,5 @@ const AboutSection: FC = () => {
     </ThisPage>
   );
 };
+
 export default AboutSection;
