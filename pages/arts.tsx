@@ -124,50 +124,6 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({
   );
 };
 
-export const getStaticProps = async () => {
-  const data = await getFromAirTable("Arts")
-    .select({
-      fields: ["Name", "Content", "Should Show", "Productions", "Classes"],
-    })
-    .all();
-
-  const productions = await getFromAirTable("Productions")
-    .select({ fields: ["Name", "Description", "Image", "Video Link"] })
-    .all();
-
-  const classes = await getFromAirTable("Classes")
-    .select({ fields: ["Name", "Notes", "Attachments"] })
-    .all();
-
-  const accessToken = process.env.FB_TOKEN;
-
-  const events = await nodeFetch(
-    `https://graph.facebook.com/v6.0/977439682312363/events?access_token=${accessToken}&debug=all&fields=start_time.order(chronological)%2Cdescription%2Cname%2Ccover&format=json&method=get&pretty=0&suppress_http_code=1&transport=cors&limit=3`
-  )
-    .then((r) => r.json())
-    .then((results) => results.data);
-
-  return {
-    unstable_revalidate: true,
-    props: {
-      events,
-      sections: data
-        .filter((b) => b.fields["Should Show"])
-        .map((d) => ({
-          ...d.fields,
-          Productions:
-            productions
-              ?.filter((p) => (d.fields as any).Productions?.includes(p.id))
-              .map((p) => p.fields) ?? null,
-          Classes:
-            classes
-              ?.filter((p) => (d.fields as any).Classes?.includes(p.id))
-              .map((p) => p.fields) ?? null,
-        })),
-    },
-  };
-};
-
 const ProductionOrClassContainer = styled.div`
   display: grid;
   gap: 16px;

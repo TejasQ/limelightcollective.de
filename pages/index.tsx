@@ -39,26 +39,4 @@ const Home = ({ events, footerData, teamData }) => (
 
 const accessToken = process.env.FB_TOKEN;
 
-export const getStaticProps = async () => {
-  const footerData = (
-    await getFromAirTable("Footer")
-      .select({ fields: ["Notes", "Name", "Team"] })
-      .all()
-  ).map((r) => r.fields);
-
-  const teamData = (
-    await getFromAirTable("Team")
-      .select({ fields: ["ID", "Name", "Notes", "Attachments"] })
-      .all()
-  ).map((r) => r.fields);
-
-  const events = await nodeFetch(
-    `https://graph.facebook.com/v6.0/977439682312363/events?access_token=${accessToken}&debug=all&fields=start_time.order(chronological)%2Cdescription%2Cname%2Ccover&format=json&method=get&pretty=0&suppress_http_code=1&transport=cors&limit=3`,
-  )
-    .then((r) => r.json())
-    .then((results) => results.data);
-
-  return { unstable_revalidate: true, props: { footerData, teamData, events } };
-};
-
 export default Home;

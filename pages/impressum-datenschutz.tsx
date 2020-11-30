@@ -55,13 +55,3 @@ const ImpressumPage: FC<any> = ({ footerData }) => {
 };
 
 export default ImpressumPage;
-
-export const getStaticProps = async () => {
-  const footerData = (
-    await getFromAirTable("Footer")
-      .select({ fields: ["Notes", "Name", "Team"] })
-      .all()
-  ).map((r) => r.fields);
-
-  return { unstable_revalidate: true, props: { footerData } };
-};

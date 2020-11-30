@@ -350,7 +350,11 @@ const CommunityPage = ({ balls }: CommunityProps) => {
               >
                 {b.Name}
               </span>
-              <img alt="LOL" css={ballImages[b.Name].style} src={ballImages[b.Name].url} />
+              <img
+                alt="LOL"
+                css={ballImages[b.Name].style}
+                src={ballImages[b.Name].url}
+              />
             </div>
           </Ball>
         ))}
@@ -371,16 +375,6 @@ const CommunityPage = ({ balls }: CommunityProps) => {
       </BallsContainer>
     </Container>
   );
-};
-
-export const getStaticProps = async () => {
-  const data = await getFromAirTable("Community")
-    .select({ fields: ["Name", "Content", "Should Show"] })
-    .all();
-  return {
-    unstable_revalidate: true,
-    props: { balls: data.filter((b) => b.fields["Should Show"]).map((d) => d.fields) },
-  };
 };
 
 export default CommunityPage;

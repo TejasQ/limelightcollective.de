@@ -31,9 +31,9 @@ const SpaceLayout = styled(TwoColumnPageLayout)`
   }
 `;
 
-const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { url: string }[] }[] }> = ({
-  sections,
-}) => {
+const SpacePage: FC<{
+  sections: { Name: string; Content: string; Attachments: { url: string }[] }[];
+}> = ({ sections }) => {
   const [activeSection, setActiveSection] = useState(0);
 
   return (
@@ -117,16 +117,6 @@ const SpacePage: FC<{ sections: { Name: string; Content: string; Attachments: { 
       </SpaceLayout>
     </Container>
   );
-};
-
-export const getStaticProps = async () => {
-  const data = await getFromAirTable("Space")
-    .select({ fields: ["Name", "Content", "Attachments", "Should Show"] })
-    .all();
-  return {
-    unstable_revalidate: true,
-    props: { sections: data.filter((b) => b.fields["Should Show"]).map((d) => d.fields) },
-  };
 };
 
 const SpaceSidebar = styled(SidebarItemContainer)`
