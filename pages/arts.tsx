@@ -27,7 +27,10 @@ type Section = {
   }[];
 };
 
-const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }) => {
+const ArtsPage: FC<{ events: any; sections: Section[] }> = ({
+  events,
+  sections,
+}) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   return (
@@ -40,7 +43,11 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
               isActive={currentPage === i}
               onClick={() => {
                 setCurrentPage(i);
-                trackEvent({ category: "Arts", action: "Go to Section", label: p.Name });
+                trackEvent({
+                  category: "Arts",
+                  action: "Go to Section",
+                  label: p.Name,
+                });
               }}
             >
               {p.Name}
@@ -48,7 +55,9 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
           ))}
         </Sections>
         <Stage>
-          <Markdown>{sections[currentPage].Content?.replace("<!-- FB EVENTS -->", "")}</Markdown>
+          <Markdown>
+            {sections[currentPage].Content?.replace("<!-- FB EVENTS -->", "")}
+          </Markdown>
           {sections[currentPage].Content === "<!-- FB EVENTS -->" && events && (
             <ProductionOrClassContainer>
               {events.map((e) => (
@@ -59,7 +68,9 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
                     <span>
                       {(() => {
                         try {
-                          return new Date(e.start_time).toISOString().split("T")[0];
+                          return new Date(e.start_time)
+                            .toISOString()
+                            .split("T")[0];
                         } catch {
                           return null;
                         }
@@ -101,7 +112,7 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
                   <img alt={p.Name} src={p.Attachments[0].url} />
                   <ProductionOrClassMeta>
                     <ProductionOrClassTitle>{p.Name}</ProductionOrClassTitle>
-                    <Markdown>{p.Notes}</Markdown>
+                    <Markdown>{p?.Notes}</Markdown>
                   </ProductionOrClassMeta>
                 </ProductionOrClass>
               ))}
@@ -115,7 +126,9 @@ const ArtsPage: FC<{ events: any; sections: Section[] }> = ({ events, sections }
 
 export const getStaticProps = async () => {
   const data = await getFromAirTable("Arts")
-    .select({ fields: ["Name", "Content", "Should Show", "Productions", "Classes"] })
+    .select({
+      fields: ["Name", "Content", "Should Show", "Productions", "Classes"],
+    })
     .all();
 
   const productions = await getFromAirTable("Productions")
@@ -129,7 +142,7 @@ export const getStaticProps = async () => {
   const accessToken = process.env.FB_TOKEN;
 
   const events = await nodeFetch(
-    `https://graph.facebook.com/v6.0/977439682312363/events?access_token=${accessToken}&debug=all&fields=start_time.order(chronological)%2Cdescription%2Cname%2Ccover&format=json&method=get&pretty=0&suppress_http_code=1&transport=cors&limit=3`,
+    `https://graph.facebook.com/v6.0/977439682312363/events?access_token=${accessToken}&debug=all&fields=start_time.order(chronological)%2Cdescription%2Cname%2Ccover&format=json&method=get&pretty=0&suppress_http_code=1&transport=cors&limit=3`
   )
     .then((r) => r.json())
     .then((results) => results.data);
@@ -143,8 +156,13 @@ export const getStaticProps = async () => {
         .map((d) => ({
           ...d.fields,
           Productions:
-            productions?.filter((p) => (d.fields as any).Productions?.includes(p.id)).map((p) => p.fields) ?? null,
-          Classes: classes?.filter((p) => (d.fields as any).Classes?.includes(p.id)).map((p) => p.fields) ?? null,
+            productions
+              ?.filter((p) => (d.fields as any).Productions?.includes(p.id))
+              .map((p) => p.fields) ?? null,
+          Classes:
+            classes
+              ?.filter((p) => (d.fields as any).Classes?.includes(p.id))
+              .map((p) => p.fields) ?? null,
         })),
     },
   };
@@ -192,7 +210,9 @@ const PageContent = styled.div`
   padding: 32px;
 `;
 
-const Section = styled("button", { shouldForwardProp: (p) => p !== "isActive" })<{ isActive: boolean }>`
+const Section = styled("button", {
+  shouldForwardProp: (p) => p !== "isActive",
+})<{ isActive: boolean }>`
   appearance: none;
   border: 0;
   padding: 8px;

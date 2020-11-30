@@ -17,10 +17,16 @@ const ThisPage = styled(Div100vh)`
 `;
 
 const DonateAndContactSection: FC<any> = ({ footerData }) => {
-  const [currentPage, setCurrentPage] = useState<"donate" | "contact">("donate");
+  const [currentPage, setCurrentPage] = useState<"donate" | "contact">(
+    "donate"
+  );
 
-  const donateNotes = footerData && footerData.find((d: FooterResult["fields"]) => d.Name === "Donate").Notes;
-  const contactNotes = footerData && footerData.find((d: FooterResult["fields"]) => d.Name === "Contact").Notes;
+  const donateNotes =
+    footerData &&
+    footerData.find((d: FooterResult["fields"]) => d.Name === "Donate")?.Notes;
+  const contactNotes =
+    footerData &&
+    footerData.find((d: FooterResult["fields"]) => d.Name === "Contact")?.Notes;
 
   return (
     <ThisPage>

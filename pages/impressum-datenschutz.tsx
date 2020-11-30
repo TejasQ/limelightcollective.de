@@ -41,7 +41,11 @@ const ImpressumPage: FC<any> = ({ footerData }) => {
         <div>
           <PageContent>
             <Markdown>
-              {footerData && footerData.find((d: FooterResult["fields"]) => d.Name === "Impressum/Datenschutz").Notes}
+              {footerData &&
+                footerData.find(
+                  (d: FooterResult["fields"]) =>
+                    d.Name === "Impressum/Datenschutz"
+                )?.Notes}
             </Markdown>
           </PageContent>
         </div>

@@ -35,7 +35,9 @@ const ProfilePic = styled.div<{ src: string }>(({ src }) => ({
 
 const AboutSection: FC<any> = ({ footerData, teamData }) => {
   const [currentPage, setCurrentPage] = useState<"concept" | "team">("concept");
-  const notes = footerData && footerData.find((d: FooterResult["fields"]) => d.Name === "About").Notes;
+  const notes =
+    footerData &&
+    footerData.find((d: FooterResult["fields"]) => d.Name === "About")?.Notes;
 
   return (
     <ThisPage>
@@ -78,7 +80,11 @@ const AboutSection: FC<any> = ({ footerData, teamData }) => {
                 {teamData &&
                   teamData.map((t: TeamResult["fields"]) => (
                     <TeamLayout key={String(t.ID)}>
-                      {t.Attachments ? <ProfilePic src={t.Attachments[0].url} /> : <div />}
+                      {t.Attachments ? (
+                        <ProfilePic src={t.Attachments[0].url} />
+                      ) : (
+                        <div />
+                      )}
                       <div>
                         <Markdown>{t.Name}</Markdown>
                         <Markdown>{t.Notes}</Markdown>
