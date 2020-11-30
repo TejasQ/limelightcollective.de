@@ -39,7 +39,7 @@ MyApp.getInitialProps = ({ ctx }) => {
   ctx.res?.writeHead?.(302, {
     Location: `https://limelightcollective.vercel.app/${ctx.req.url}`,
   });
-  ctx.res.end();
+  ctx.res?.end?.();
   return {
     redirect: {
       destination: `https://limelightcollective.vercel.app/${ctx.req.url}`,
