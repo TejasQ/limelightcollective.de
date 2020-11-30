@@ -41,12 +41,7 @@ MyApp.getInitialProps = ({ ctx }) => {
       Location: `https://limelightcollective.vercel.app/${ctx.req.url}`,
     })
     .end?.();
-  return {
-    redirect: {
-      destination: `https://limelightcollective.vercel.app/${ctx.req.url}`,
-      permanent: false,
-    },
-  };
+  return {};
 };
 
 export default MyApp;
