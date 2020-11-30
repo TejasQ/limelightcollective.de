@@ -1,10 +1,3 @@
-[[redirects]]
-  from = "/"
-  to = "/index"
-  status = 302
-  force = false
-  query = {path = ":path"}
-
 [build]
   command   = "npm run build"
   functions = "out_functions"
