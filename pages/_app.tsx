@@ -13,7 +13,7 @@ if (typeof navigator !== "undefined" && "serviceWorker" in navigator) {
   });
 }
 
-const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }) => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   useEffect(() => {
