@@ -35,13 +35,14 @@ const MyApp = ({ Component, pageProps }) => {
   );
 };
 
-MyApp.getInitialProps = ({ req, res }) => {
-  res.writeHead(302, {
-    Location: `https://limelightcollective.vercel.app/${req.pathname}`,
+MyApp.getInitialProps = ({ ctx }) => {
+  ctx.res?.writeHead?.(302, {
+    Location: `https://limelightcollective.vercel.app/${ctx.req.url}`,
   });
+  ctx.res.end();
   return {
     redirect: {
-      destination: `https://limelightcollective.vercel.app/${req.pathname}`,
+      destination: `https://limelightcollective.vercel.app/${ctx.req.url}`,
       permanent: false,
     },
   };
