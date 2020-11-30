@@ -23,13 +23,25 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <>
-      <BurgerIcon isActive={isBurgerOpen} onClick={() => setIsBurgerOpen(!isBurgerOpen)} />
+      <BurgerIcon
+        isActive={isBurgerOpen}
+        onClick={() => setIsBurgerOpen(!isBurgerOpen)}
+      />
       {isBurgerOpen && <Menu close={() => setIsBurgerOpen(false)} />}
       <Global styles={globalStyles} />
 
       <Component {...pageProps} />
     </>
   );
+};
+
+export const getServerSideProps = ({ req }) => {
+  return {
+    redirect: {
+      destination: `https://limelightcollective.vercel.app/${req.pathname}`,
+      permanent: false,
+    },
+  };
 };
 
 export default MyApp;
