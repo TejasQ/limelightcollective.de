@@ -1,6 +1,11 @@
 [[redirects]]
-  from = "/"
+  from = "/*"
   to = "https://limelightcollective.vercel.app"
   status = 302
   force = false
   query = {path = ":path"}
+
+[build]
+  command   = "npm run build"
+  functions = "out_functions"
+  publish   = "out_publish"

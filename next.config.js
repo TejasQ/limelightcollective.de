@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports = {
+  target: "serverless",
+
   env: {
     FB_TOKEN: process.env.FB_TOKEN,
     AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
