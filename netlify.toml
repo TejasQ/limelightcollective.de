@@ -1,0 +1,6 @@
+[[redirects]]
+  from = "/"
+  to = "https://limelightcollective.vercel.app"
+  status = 302
+  force = false
+  query = {path = ":path"}
