@@ -35,7 +35,10 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   );
 };
 
-export const getServerSideProps = ({ req }) => {
+MyApp.getInitialProps = ({ req, res }) => {
+  res.writeHead(302, {
+    Location: `https://limelightcollective.vercel.app/${req.pathname}`,
+  });
   return {
     redirect: {
       destination: `https://limelightcollective.vercel.app/${req.pathname}`,
