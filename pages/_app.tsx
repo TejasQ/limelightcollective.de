@@ -39,7 +39,7 @@ MyApp.getInitialProps = ({ ctx }: { ctx: AppContext["ctx"] }) => {
   ctx.res
     ?.writeHead?.(302, {
       Location: `https://limelightcollective.vercel.app${
-        ctx.req.url.includes(".de") ? "/de" : ""
+        ctx.req.headers.host.includes(".de") ? "/de" : ""
       }/${ctx.req.url}`,
     })
     .end?.();
