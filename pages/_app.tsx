@@ -1,4 +1,4 @@
-import { AppProps } from "next/app";
+import { AppContext, AppProps } from "next/app";
 import React, { FC, useState, useEffect } from "react";
 import { Global } from "@emotion/core";
 import ReactGA from "react-ga";
@@ -35,10 +35,12 @@ const MyApp = ({ Component, pageProps }) => {
   );
 };
 
-MyApp.getInitialProps = ({ ctx }) => {
+MyApp.getInitialProps = ({ ctx }: { ctx: AppContext["ctx"] }) => {
   ctx.res
     ?.writeHead?.(302, {
-      Location: `https://limelightcollective.vercel.app/${ctx.req.url}`,
+      Location: `https://limelightcollective.vercel.app${
+        ctx.req.url.includes(".de") ? "/de" : ""
+      }/${ctx.req.url}`,
     })
     .end?.();
   return {};
